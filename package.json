@@ -1,12 +1,15 @@
 {
   "name": "@zendesk/onboarding-experience-composer",
   "version": "1.0.0",
-  "main": "main.js",
+  "main": "bundle.js",
   "repository": "https://github.com/zendesk/onboarding-experience-composer",
   "author": "",
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
     "rollup": "^3.7.4"
+  },
+  "scripts": {
+    "build": "rollup main.js --file bundle.js --format umd --name 'myBundle'"
   }
 }
