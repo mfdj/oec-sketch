@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
-    "rollup": "^3.7.4"
+    "rollup": "^4.0.2"
   },
   "scripts": {
     "build": "rollup main.js --file bundle.js --format umd --name 'myBundle'"
