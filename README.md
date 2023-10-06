@@ -1,9 +1,11 @@
 # Hello World, with Rollup
 
-This project contains a hello world program in `main.js`:
+This project contains a hello world program in `main.js` which uses a library:
 
 ```js
+const { func99 } = require('./lib/fat-lib.js');
 console.log('hello world!');
+func99();
 ```
 
 Which we'll build with Rollup using UMD, so it's compatible with Node and Browsers:
@@ -34,7 +36,10 @@ This will output **bundle.js**:
 	factory();
 })((function () { 'use strict';
 
+	const { func99 } = require('./lib/fat-lib.js');
+
 	console.log('hello world!');
+	func99();
 
 }));
 ```
