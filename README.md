@@ -1,4 +1,4 @@
-# Hello World, with Rollup
+# oec-sketch
 
 This project is a basic library using `main.js` as an entrypoint:
 
@@ -20,10 +20,19 @@ module.exports = {
 Which we'll build with Rollup using UMD, so it's compatible with Node and Browsers:
 
 ```sh
-$ rollup main.js --file bundle.js --format umd --name 'myBundle'
+$ rollup main.js --file bundle.js --format umd --name 'oecSketch'
 ```
 
-### Rollup
+We'll reference the bundle in **main** field of our package.json:
+
+```js
+{
+  "name": "@mfdj/oec-sketch",
+  "main": "./bundle.js"
+}
+```
+
+### Rollup build
 
 Install packages + build
 
@@ -54,3 +63,7 @@ This will output **bundle.js**:
 
 }));
 ```
+
+When added to a create-react project the entire library (106.34 KB) will be included in the main chunk:
+
+<img src="docs/analyze-umd-build.png" />

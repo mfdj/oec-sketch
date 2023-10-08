@@ -1,15 +1,21 @@
 {
-  "name": "@zendesk/onboarding-experience-composer",
+  "name": "@mfdj/oec-sketch",
   "version": "1.0.0",
-  "main": "bundle.js",
-  "repository": "https://github.com/zendesk/onboarding-experience-composer",
-  "author": "",
+  "engines": {
+    "node": ">=16"
+  },
+  "exports": {
+    "import": "./bundle.mjs",
+    "require": "./bundle.cjs"
+  },
+  "repository": "https://github.com/mfdj/oec-sketch",
+  "author": "@mfdj",
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
     "rollup": "^4.0.2"
   },
   "scripts": {
-    "build": "./script/generate-fat-lib.sh; rollup main.js --file bundle.js --format umd --name 'myBundle'"
+    "build": "./script/generate-fat-lib.sh; rollup -c"
   }
 }
