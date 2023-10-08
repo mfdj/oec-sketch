@@ -10,6 +10,6 @@
     "rollup": "^4.0.2"
   },
   "scripts": {
-    "build": "rollup main.js --file bundle.js --format umd --name 'myBundle'"
+    "build": "./script/generate-fat-lib.sh; rollup main.js --file bundle.js --format umd --name 'myBundle'"
   }
 }
