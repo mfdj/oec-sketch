@@ -21,32 +21,44 @@ for i in 1 2 3 4; do
   wc -l < "$TEMP_DIR/paragraphs.html"
 done
 
-# Generate some code
-echo > lib/fat-lib.js
-offset=0
-for index in $(seq 1 $NUMBER_OF_PARAGRAPHS); do
-  paragraph=
-  while [[ -z $paragraph ]]; do
-    selector=$(printf 'p:nth-child(%i)' "$(( index + offset ))")
-    paragraph=$(htmlq --text "$selector" < "$TEMP_DIR/paragraphs.html" | tr '\n' ' ')
-    echo "$index (+ $offset): $paragraph"
+generate() {
+  local type=$1
+  local filepath=$2
 
-    # filter in paragraphs that are only spaces
-    if [[ -z $(tr -d ' ' <<< "$paragraph") ]]; then
-      offset=$(( offset + 1 ))
-      paragraph=
+  # Generate some code
+  echo > "$filepath"
+  offset=0
+  for index in $(seq 1 "$NUMBER_OF_PARAGRAPHS"); do
+    paragraph=
+    while [[ -z $paragraph ]]; do
+      selector=$(printf 'p:nth-child(%i)' "$(( index + offset ))")
+      paragraph=$(htmlq --text "$selector" < "$TEMP_DIR/paragraphs.html" | tr '\n' ' ')
+      echo "$index (+ $offset): $paragraph"
+
+      # filter in paragraphs that are only spaces
+      if [[ -z $(tr -d ' ' <<< "$paragraph") ]]; then
+        offset=$(( offset + 1 ))
+        paragraph=
+      fi
+    done
+
+    if [[ $type == esm ]]; then
+      printf 'export ' >> "$filepath"
     fi
+    # shellcheck disable=SC2016
+    printf 'function func%i(index = %i) {\n  const data = `%s`\n' "$index" "$index" "$paragraph" >> "$filepath"
+    # shellcheck disable=SC2016
+    printf '  console.log(`manifesto ${index}`);\n  return data;\n}\n\n' >> "$filepath"
   done
-  # shellcheck disable=SC2016
-  printf 'function func%i(index = %i) {\n  const data = `%s`\n' "$index" "$index" "$paragraph" >> lib/fat-lib.js
-  # shellcheck disable=SC2016
-  printf '  console.log(`manifesto 🐼 ${index}`);\n  return data;\n}\n\n' >> lib/fat-lib.js
-done
 
-printf 'module.exports = {\n' >> lib/fat-lib.js
+  if [[ $type == commonjs ]]; then
+    printf 'module.exports = {\n' >> "$filepath"
+    for index in $(seq 1 "$NUMBER_OF_PARAGRAPHS"); do
+      printf '  func%i,\n' "$index" >> "$filepath"
+    done
+    echo '}' >> "$filepath"
+  fi
+}
 
-for index in $(seq 1 $NUMBER_OF_PARAGRAPHS); do
-  printf '  func%i,\n' "$index" >> lib/fat-lib.js
-done
-
-echo '}' >> lib/fat-lib.js
+generate esm lib/fat-lib.mjs
+generate commonjs lib/fat-lib.cjs

@@ -1,0 +1,121 @@
+# oec-sketch
+
+<<<<<<< Updated upstream
+## Git history highlights
+
+89b53a0 Functional UMD package with fat-lib
+
+## Details
+
+This project is a basic library using `main.js` as an entrypoint:
+=======
+This project is a basic library with two entrypoints:
+
+(1) `main.mjs` using modern ES features (namely `import` + `export`):
+
+```js
+import { func79, func59, func39, func19, func9 } from './lib/fat-lib.mjs';
+
+console.log('➳ oec-sketch ESM evaluation');
+
+export function main() {
+  return func79() + func59() + func39() + func19() + func9();
+}
+
+export { func99 } from './lib/fat-lib.mjs';
+```
+
+(2) `main.cjs` using "classic" Node apis (namely `require` + `module.exports`):
+>>>>>>> Stashed changes
+
+```js
+const { func99, func79, func59, func39, func19, func9 } = require('./lib/fat-lib.js');
+
+console.log('➳ oec-sketch module evaluation');
+
+function main() {
+  return func79() + func59() + func39() + func19() + func9();
+}
+
+module.exports = {
+  func99,
+  main
+};
+```
+
+Which we'll build with Rollup:
+
+```js
+import packageJson from './package.json' assert { type: "json" };
+
+export default [
+  {
+    input: 'main.mjs',
+    output: {
+      name: 'oecSketch',
+      file: packageJson.exports.import,
+      format: 'es'
+    }
+  },
+  {
+    input: 'main.cjs',
+    output: {
+      name: 'oecSketch',
+      file: packageJson.exports.require,
+      format: 'cjs'
+    }
+  }
+];
+```
+
+We'll reference the bundle in **main** field of our package.json:
+
+```js
+{
+  "name": "@mfdj/oec-sketch",
+<<<<<<< Updated upstream
+  "main": "./bundle.js"
+=======
+  "exports": {
+    "import": "./bundle.mjs",
+    "require": "./bundle.cjs"
+  }
+>>>>>>> Stashed changes
+}
+```
+
+### Rollup build
+
+Install packages + build
+
+```sh
+$ yarn; yarn build 
+```
+
+This will output **bundle.js**:
+
+```js
+(function (factory) {
+  typeof define === 'function' && define.amd ? define(factory) :
+  factory();
+})((function () { 'use strict';
+
+  const { func99, func79, func59, func39, func19, func9 } = require('./lib/fat-lib.js');
+
+  console.log('➳ oec-sketch module evaluation');
+
+  function main() {
+    return func79() + func59() + func39() + func19() + func9();
+  }
+
+  module.exports = {
+    func99,
+    main
+  };
+
+}));
+```
+
+When added to a create-react project the entire library (106.34 KB) will be included in the main chunk:
+
+<img src="docs/analyze-umd-build.png" />

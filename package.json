@@ -1,7 +1,13 @@
 {
   "name": "@mfdj/oec-sketch",
   "version": "1.0.0",
-  "main": "bundle.js",
+  "engines": {
+    "node": ">=16"
+  },
+  "exports": {
+    "import": "./bundle.mjs",
+    "require": "./bundle.cjs"
+  },
   "repository": "",
   "author": "@mfdj",
   "license": "UNLICENSED",
@@ -10,6 +16,6 @@
     "rollup": "^4.0.2"
   },
   "scripts": {
-    "build": "./script/generate-fat-lib.sh; rollup main.js --file bundle.js --format umd --name 'oecSketch'"
+    "build": "./script/generate-fat-lib.sh; rollup -c"
   }
 }
