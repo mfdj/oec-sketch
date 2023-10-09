@@ -34,7 +34,7 @@ function func99(index = 99) {
   return data;
 }
 
-console.log('➳ oec-sketch ESM evaluation');
+console.log('➳ oec-sketch shared entrypoint evaluation');
 
 function main() {
   return func79() + func59() + func39() + func19() + func9();
