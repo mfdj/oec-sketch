@@ -10,7 +10,7 @@ export default [
     }
   },
   {
-    input: 'main.cjs',
+    input: 'main.mjs',
     output: {
       name: 'oecSketch',
       file: packageJson.exports.require,

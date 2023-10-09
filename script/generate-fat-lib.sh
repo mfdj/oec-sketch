@@ -61,4 +61,4 @@ generate() {
 }
 
 generate esm lib/fat-lib.mjs
-generate commonjs lib/fat-lib.cjs
+# generate commonjs lib/fat-lib.cjs

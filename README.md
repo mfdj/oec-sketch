@@ -3,17 +3,16 @@
 **Git history highlights**
 
 [27566ff](https://github.com/mfdj/oec-sketch/tree/27566ff583a1f460dc49a4199c1264aa27dcb00a) Functional UMD package with fat-lib
+[19474ae](https://github.com/mfdj/oec-sketch/tree/19474ae6475980a6f0caeaca4d065f21dc7120aa) Dual ESM + CJS inputs + outputs
 
 ## Details
 
-This project is a basic library with two entrypoints: one in ES and the other is a CommonJS clone.
-
-`main.mjs` using modern ES features (namely `import` + `export`):
+This project is a basic library with two outputs (ES + CJS) from a single ES input:
 
 ```js
 import { func79, func59, func39, func19, func9 } from './lib/fat-lib.mjs';
 
-console.log('➳ oec-sketch ESM evaluation');
+console.log('➳ oec-sketch shared-main evaluation');
 
 export function main() {
   return func79() + func59() + func39() + func19() + func9();
@@ -22,24 +21,21 @@ export function main() {
 export { func99 } from './lib/fat-lib.mjs';
 ```
 
-`main.cjs` using "classic" Node apis (namely `require` + `module.exports`):
+### Rollup build + usage in CRA host-app
+
+package.json defines 2 outputs in the **export** field:
 
 ```js
-const { func99, func79, func59, func39, func19, func9 } = require('./lib/fat-lib.cjs');
-
-console.log('➳ oec-sketch CommonJS evaluation');
-
-function main() {
-  return func79() + func59() + func39() + func19() + func9();
+{
+  "name": "@mfdj/oec-sketch",
+  "exports": {
+    "import": "./bundle.mjs",
+    "require": "./bundle.cjs"
+  }
 }
-
-module.exports = {
-  func99,
-  main
-};
 ```
 
-Both entrypoints are bundled with Rollup:
+The Rollup config takes the `main.mjs` input and produces two outputs:
 
 ```js
 import packageJson from './package.json' assert { type: "json" };
@@ -54,7 +50,7 @@ export default [
     }
   },
   {
-    input: 'main.cjs',
+    input: 'main.mjs',
     output: {
       name: 'oecSketch',
       file: packageJson.exports.require,
@@ -63,20 +59,6 @@ export default [
   }
 ];
 ```
-
-The outputs utilize the **export** field of our package.json:
-
-```js
-{
-  "name": "@mfdj/oec-sketch",
-  "exports": {
-    "import": "./bundle.mjs",
-    "require": "./bundle.cjs"
-  }
-}
-```
-
-### Rollup build + usage in CRA host-app
 
 Install packages + build
 
@@ -138,7 +120,7 @@ function func99(index = 99) {
   // …
 }
 
-console.log('➳ oec-sketch ESM evaluation');
+console.log('➳ oec-sketch shared-main evaluation');
 
 function main() {
   return func79() + func59() + func39() + func19() + func9();
