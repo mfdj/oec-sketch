@@ -2,9 +2,11 @@
 
 **Git history highlights**
 
-[27566ff](https://github.com/mfdj/oec-sketch/tree/27566ff583a1f460dc49a4199c1264aa27dcb00a) Functional UMD package with fat-lib
-[19474ae](https://github.com/mfdj/oec-sketch/tree/19474ae6475980a6f0caeaca4d065f21dc7120aa) Dual ESM + CJS inputs + outputs
-[4ddc71c](https://github.com/mfdj/oec-sketch/commit/4ddc71c1ef0d733a5bf8e2073f7a51856bc845c8) Single ESM input
+[27566ff](https://github.com/mfdj/oec-sketch/blob/27566ff583a1f460dc49a4199c1264aa27dcb00a) Functional UMD package with fat-lib [README](https://github.com/mfdj/oec-sketch/blob/27566ff583a1f460dc49a4199c1264aa27dcb00a/README.md)
+
+[19474ae](https://github.com/mfdj/oec-sketch/blob/19474ae6475980a6f0caeaca4d065f21dc7120aa) Dual ESM + CJS inputs + outputs [README](https://github.com/mfdj/oec-sketch/blob/19474ae6475980a6f0caeaca4d065f21dc7120aa/README.md)
+
+[4ddc71c](https://github.com/mfdj/oec-sketch/blob/4ddc71c1ef0d733a5bf8e2073f7a51856bc845c8) Single ESM input [README](https://github.com/mfdj/oec-sketch/blob/4ddc71c1ef0d733a5bf8e2073f7a51856bc845c8/README.md)
 
 ## Details
 
