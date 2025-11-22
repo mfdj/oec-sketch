@@ -4,6 +4,7 @@
 
 [27566ff](https://github.com/mfdj/oec-sketch/tree/27566ff583a1f460dc49a4199c1264aa27dcb00a) Functional UMD package with fat-lib
 [19474ae](https://github.com/mfdj/oec-sketch/tree/19474ae6475980a6f0caeaca4d065f21dc7120aa) Dual ESM + CJS inputs + outputs
+[4ddc71c](https://github.com/mfdj/oec-sketch/commit/4ddc71c1ef0d733a5bf8e2073f7a51856bc845c8) Single ESM input
 
 ## Details
 
@@ -63,13 +64,13 @@ export default [
 Install packages + build
 
 ```sh
-$ yarn; yarn build 
+$ npm install; npm run build 
 ```
 
-Add to a create-react project using yarn add link:
+Add to a create-react project using npm add link:
 
 ```sh
-$ yarn add link:../oec-sketch
+$ npm add file:../oec-sketch
 ```
 
 And use in App.jsx:
