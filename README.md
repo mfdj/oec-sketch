@@ -41,7 +41,7 @@ package.json defines 2 outputs in the **export** field:
 The Rollup config takes the `main.mjs` input and produces two outputs:
 
 ```js
-import packageJson from './package.json' assert { type: "json" };
+import packageJson from './package.json' with { type: "json" };
 
 export default [
   {
