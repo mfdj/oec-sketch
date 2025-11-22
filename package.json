@@ -16,6 +16,6 @@
     "rollup": "^4.0.2"
   },
   "scripts": {
-    "build": "./script/generate-fat-lib.sh; rollup -c"
+    "build": "./script/generate-fat-lib.sh; rollup --config"
   }
 }
