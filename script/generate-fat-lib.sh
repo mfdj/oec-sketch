@@ -11,13 +11,16 @@ if [[ ! ${TEMP_DIR:-} ]]; then
 fi
 echo "Using $TEMP_DIR"
 
-# Collect paragraphs
+# Download each chapter then collate into a singular paragraphs.html
 echo > "$TEMP_DIR/paragraphs.html"
-for i in 1 2 3 4; do
-  if [[ ! -f $TEMP_DIR/chapter$i.html ]]; then
-    curl "https://www.marxists.org/archive/marx/works/1848/communist-manifesto/ch0$i.htm" > "$TEMP_DIR/chapter$i.html"
+for chapter_index in 1 2 3 4; do
+  if [[ ! -f $TEMP_DIR/chapter$chapter_index.html ]]; then
+    curl "https://www.marxists.org/archive/marx/works/1848/communist-manifesto/ch0$chapter_index.htm" --silent > "$TEMP_DIR/chapter$chapter_index.html"
   fi
-  htmlq body blockquote p --pretty --remove-nodes .title < "$TEMP_DIR/chapter$i.html" >> "$TEMP_DIR/paragraphs.html"
+
+  htmlq body blockquote p --pretty --remove-nodes .title < "$TEMP_DIR/chapter$chapter_index.html" >> "$TEMP_DIR/paragraphs.html"
+
+  echo -n "paragraphs.html line count after chapter $chapter_index: "
   wc -l < "$TEMP_DIR/paragraphs.html"
 done
 
@@ -33,7 +36,7 @@ generate() {
     while [[ -z $paragraph ]]; do
       selector=$(printf 'p:nth-child(%i)' "$(( index + offset ))")
       paragraph=$(htmlq --text "$selector" < "$TEMP_DIR/paragraphs.html" | tr '\n' ' ')
-      echo "$index (+ $offset): $paragraph"
+      echo -ne "\r\033[Kindex: $index (+ $offset)"
 
       # filter in paragraphs that are only spaces
       if [[ -z $(tr -d ' ' <<< "$paragraph") ]]; then
@@ -58,6 +61,10 @@ generate() {
     done
     echo '}' >> "$filepath"
   fi
+
+  echo
+  echo -n 'Bytes: '
+  gdu --block-size=1 --apparent-size "$filepath"
 }
 
 generate esm lib/fat-lib.mjs
