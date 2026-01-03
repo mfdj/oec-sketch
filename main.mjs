@@ -1,6 +1,7 @@
 import { func79, func59, func39, func19, func9 } from './lib/fat-lib.mjs';
+import { version, description } from './package.json';
 
-console.log('➳ oec-sketch shared-main evaluation');
+console.log(`➳ oec-sketch shared-main evaluation ${version} "${description}"`);
 
 export function main() {
   return func79() + func59() + func39() + func19() + func9();

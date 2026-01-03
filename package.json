@@ -11,8 +11,10 @@
   "repository": "https://github.com/mfdj/oec-sketch",
   "author": "@mfdj",
   "license": "UNLICENSED",
+  "description": "with @rollup/plugin-json",
   "private": true,
   "devDependencies": {
+    "@rollup/plugin-json": "^6.1.0",
     "prettier": "^3.7.4",
     "rollup": "^4.0.2"
   },

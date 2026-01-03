@@ -1,4 +1,5 @@
 import packageJson from './package.json' with { type: 'json' };
+import json from '@rollup/plugin-json';
 
 export default [
   {
@@ -13,5 +14,6 @@ export default [
         format: 'cjs',
       },
     ],
+    plugins: [json()],
   },
 ];

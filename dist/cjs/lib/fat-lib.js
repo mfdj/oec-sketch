@@ -1,3 +1,5 @@
+'use strict';
+
 function func9(index = 9) {
   const data = `In the earlier epochs of history, we find almost everywhere a complicated arrangement of society into various orders, a manifold gradation of social rank. In ancient Rome we have patricians, knights, plebeians, slaves; in the Middle Ages, feudal lords, vassals, guild-masters, journeymen, apprentices, serfs; in almost all of these classes, again, subordinate gradations.   `;
   console.log(`manifesto ${index}`);
@@ -34,13 +36,9 @@ function func99(index = 99) {
   return data;
 }
 
-var version = "1.0.0";
-var description = "with @rollup/plugin-json";
-
-console.log(`➳ oec-sketch shared-main evaluation ${version} "${description}"`);
-
-function main() {
-  return func79() + func59() + func39() + func19() + func9();
-}
-
-export { func99, main };
+exports.func19 = func19;
+exports.func39 = func39;
+exports.func59 = func59;
+exports.func79 = func79;
+exports.func9 = func9;
+exports.func99 = func99;

@@ -34,13 +34,4 @@ function func99(index = 99) {
   return data;
 }
 
-var version = "1.0.0";
-var description = "with @rollup/plugin-json";
-
-console.log(`➳ oec-sketch shared-main evaluation ${version} "${description}"`);
-
-function main() {
-  return func79() + func59() + func39() + func19() + func9();
-}
-
-export { func99, main };
+export { func19, func39, func59, func79, func9, func99 };
