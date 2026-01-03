@@ -37,7 +37,7 @@ function func99(index = 99) {
 }
 
 var version = "1.0.0";
-var description = "with @rollup/plugin-json";
+var description = "with sourcemap enabled";
 
 console.log(`➳ oec-sketch shared-main evaluation ${version} "${description}"`);
 
@@ -47,3 +47,4 @@ function main() {
 
 exports.func99 = func99;
 exports.main = main;
+//# sourceMappingURL=bundle.cjs.map

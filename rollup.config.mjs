@@ -8,10 +8,12 @@ export default [
       {
         file: packageJson.exports.import,
         format: 'es',
+        sourcemap: true,
       },
       {
         file: packageJson.exports.require,
         format: 'cjs',
+        sourcemap: true,
       },
     ],
     plugins: [json()],
