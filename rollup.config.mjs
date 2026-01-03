@@ -1,4 +1,3 @@
-import packageJson from './package.json' with { type: 'json' };
 import json from '@rollup/plugin-json';
 
 export default [
@@ -6,14 +5,14 @@ export default [
     input: 'main.mjs',
     output: [
       {
-        file: packageJson.exports.import,
+        dir: 'dist/es',
         format: 'es',
-        sourcemap: true,
+        preserveModules: true,
       },
       {
-        file: packageJson.exports.require,
+        dir: 'dist/cjs',
         format: 'cjs',
-        sourcemap: true,
+        preserveModules: true,
       },
     ],
     plugins: [json()],

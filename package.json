@@ -5,13 +5,13 @@
     "node": ">=16"
   },
   "exports": {
-    "import": "./bundle.mjs",
-    "require": "./bundle.cjs"
+    "import": "./dist/es/main.js",
+    "require": "./dist/cjs/main.js"
   },
   "repository": "https://github.com/mfdj/oec-sketch",
   "author": "@mfdj",
   "license": "UNLICENSED",
-  "description": "with sourcemap enabled",
+  "description": "with preserveModules enabled",
   "private": true,
   "devDependencies": {
     "@rollup/plugin-json": "^6.1.0",
@@ -19,7 +19,7 @@
     "rollup": "^4.0.2"
   },
   "scripts": {
-    "build": "./script/generate-fat-lib.sh; rollup --config",
+    "build": "./script/generate-fat-lib.sh; rm -rf dist/*; rollup --config",
     "prettier": "npm exec prettier -- main* rollup* --write --single-quote; npm exec prettier -- --parser json --write package.json"
   }
 }
