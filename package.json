@@ -13,9 +13,11 @@
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
+    "prettier": "^3.7.4",
     "rollup": "^4.0.2"
   },
   "scripts": {
-    "build": "./script/generate-fat-lib.sh; rollup --config"
+    "build": "./script/generate-fat-lib.sh; rollup --config",
+    "prettier": "npm exec prettier -- main* rollup* --write --single-quote; npm exec prettier -- --parser json --write package.json"
   }
 }
